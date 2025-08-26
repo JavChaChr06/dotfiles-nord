@@ -1,0 +1,174 @@
+{
+"layer": "top",
+"position": "top",
+"height": 36,
+    
+"modules-left": [
+	"cpu",
+	"temperature",
+	"custom/pacman", 
+	"idle_inhibitor"
+],
+
+"modules-center": [
+	"hyprland/workspaces"
+],
+
+"modules-right": [
+	"pulseaudio", 
+	"network", 
+	"tray",
+	"clock"
+],
+    
+
+"hyprland/workspaces": {
+	"disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+        	"1": "󰎦",
+        	"2": "󰎩",
+		"3": "󰎬",
+		"4": "󰎮",
+		"5": "󰎰",
+		"6": "󰎵"
+        }
+},
+
+"idle_inhibitor": {
+        "format": "{icon} ",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": "false"
+},
+
+"tray": {
+        "icon-size": 16,
+        "spacing": 5
+},
+
+"clock": {
+        "format": "  {:%H:%M |   %e %b}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "today-format": "<b>{}</b>",
+        "on-click": "gnome-calendar"
+},
+
+"cpu": {
+        "interval": "1",      
+        "format": "   {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+        "max-length": 13,
+        "min-length": 13,
+        "on-click": "kitty -e btop",
+        "tooltip": true
+},
+
+"temperature": {
+        "interval": "4",
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 74,
+        "format-critical": "  {temperatureC}°C",
+        "format": "{icon}  {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "max-length": 7,
+        "min-length": 7
+},
+
+"network": {
+        // "interface": "wlan0", // (Optional) To force the use of this interface,
+        "format-wifi": "   {essid}",
+        "format-ethernet": "   {ifname}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "󰕑 ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "family": "ipv4",
+        "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n {bandwidthUpBits}  {bandwidthDownBits}"
+},
+
+"pulseaudio": {
+        "scroll-step": 3, // %, can be a float
+        "format": "{icon}  {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "",
+        "format-source-muted": "󰍭",
+        "format-icons": {
+            "headphone": "",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+},
+
+"custom/pacman": {
+	"format": "{icon} {text}",
+	"return-type": "json",
+	"format-icons": {
+		"pending-updates": " ",	
+		"updated": ""
+	},
+	"exec": "waybar-updates",
+	"on-click": "kitty -e paru"
+},
+
+"custom/weather": {
+        "exec": "curl 'https://wttr.in/?format=1'",
+        "interval": 3600
+},
+    
+"custom/gpu": {
+      "exec": "$HOME/.config/waybar/custom_modules/custom-gpu.sh",
+      "return-type": "json",
+      "format": "  {}",
+      "interval": 2,
+      "tooltip": "{tooltip}",
+      "max-length": 19,
+      "min-length": 19,
+      "on-click": "powerupp"
+      
+}, 
+
+"custom/cpugovernor": {
+      "format": "{icon}",
+      "interval": "30",
+      "return-type": "json",
+      "exec": "$HOME/.config/waybar/custom_modules/cpugovernor.sh",
+      "min-length": 2,
+      "max-length": 2,
+        "format-icons": {
+            "perf": "",
+            "sched": ""
+	}
+},    
+    
+"custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+},
+    
+"custom/scratchpad-indicator": {
+        "interval": 3,
+        "return-type": "json",
+        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '( select(.name == \"root\") | .nodes[] | select(.name == \"__i3\") | .nodes[] | select(.name == \"__i3_scratch\") | .focus) as $scratch_ids | [..  | (.nodes? + .floating_nodes?) // empty | .[] | select(.id |IN($scratch_ids[]))] as $scratch_nodes | { text: \"\\($scratch_nodes | length)\", tooltip: $scratch_nodes | map(\"\\(.app_id // .window_properties.class) (\\(.id)): \\(.name)\") | join(\"\\n\") }'",
+        "format": "{} 􏠜",
+        "on-click": "exec swaymsg 'scratchpad show'",
+        "on-click-right": "exec swaymsg 'move scratchpad'"
+    }    
+}
