@@ -18,7 +18,8 @@
 	"pulseaudio", 
 	"network", 
 	"tray",
-	"clock"
+	"clock",
+	"battery"
 ],
     
 
@@ -170,5 +171,11 @@
         "format": "{} 􏠜",
         "on-click": "exec swaymsg 'scratchpad show'",
         "on-click-right": "exec swaymsg 'move scratchpad'"
-    }    
-}
+    },
+
+"battery" : {
+	"interval": 30,
+	"format": "{capacity}% | {time}"
+
+	}
+},
