@@ -118,7 +118,7 @@
 		"updated": ""
 	},
 	"exec": "waybar-updates",
-	"on-click": "kitty -e paru"
+	"on-click": "kitty -e yay"
 },
 
 "custom/weather": {
