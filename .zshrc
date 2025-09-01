@@ -1,8 +1,3 @@
-# init PowerLevel10k
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # init ZInit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -14,7 +9,6 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Plugins
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -56,7 +50,8 @@ alias ls='ls -a --color'
 
 # Shell integrations
 eval "$(fzf --zsh)"
+eval "$(oh-my-posh init zsh)"
+
 # idk
 export PATH=$PATH:/home/javi/.spicetify
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
