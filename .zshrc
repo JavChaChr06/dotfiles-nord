@@ -29,7 +29,7 @@ bindkey '^n' history-search-forward
 
 # History
 HISTSIZE=5000
-HISTFILE=~/dotfiles-nord/.zsh_history
+HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
