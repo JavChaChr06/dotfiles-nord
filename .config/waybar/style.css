@@ -84,6 +84,7 @@
 #custom-gpu,
 #tray,
 #backlight,
+#bluetooth,
 #language,
 #custom-cpugovernor {
     padding-left: 0.6em;
@@ -159,12 +160,13 @@
 }
 
 #workspaces button.focused {
-    background: @bg3;
+    background: @bg4;
 }
 
 #workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+    border-color: @red;
+    border: 2px solid;
+    color: @red;
     opacity: 1;
 }
 
@@ -174,10 +176,17 @@
     font-weight: normal;
 }
 #bluetooth {
-    background: @lilac;
+    background: @bg2;
     font-size: 1.2em;
     font-weight: bold;
     padding: 0 0.6em;
+}
+#bluetooth.on {
+	background: @lilac;
+	color: @bg4;
+}
+#bluetooth.off {
+	color: @fg1;
 }
 #custom-gpu {
     background: @bg3;
@@ -280,7 +289,7 @@
 }
 
 #pulseaudio { /* Unsused but kept for those who needs it */
-    background: @bg;
+    background: @bg2;
     color: @fg1;
 }
 

@@ -45,8 +45,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
 # Aliases
 alias ls='ls -a --color'
+alias pushdot='sh $HOME/dotfiles-nord/push_dotfiles.sh'
+alias pulldot='sh $HOME/dotfiles-nord/pull_dotfiles.sh'
 
 # Shell integrations
 eval "$(fzf --zsh)"
