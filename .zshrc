@@ -57,4 +57,4 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/nord.json)"
 
 # idk
 export PATH=$PATH:/home/javi/.spicetify
-
+export PATH=/home/david/pear/bin:$PATH

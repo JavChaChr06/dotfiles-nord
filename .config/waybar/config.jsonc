@@ -79,8 +79,6 @@
         "format-critical": "  {temperatureC}°C",
         "format": "{icon}  {temperatureC}°C",
         "format-icons": ["", "", ""],
-        "max-length": 7,
-        "min-length": 7
 },
 
 "network": {
