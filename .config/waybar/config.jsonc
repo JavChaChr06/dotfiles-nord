@@ -6,8 +6,9 @@
 "modules-left": [
 	"cpu",
 	"temperature",
-	"custom/pacman", 
-	"idle_inhibitor"
+	"custom/pacman",
+	"idle_inhibitor",
+	"custom/tabletmode"
 ],
 
 "modules-center": [
@@ -57,7 +58,7 @@
 },
 
 "clock": {
-        "format": "  {:%H:%M |   %e %b}",
+        "format": "{:%H:%M | %e %b}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "today-format": "<b>{}</b>",
         "on-click": "gnome-calendar"
@@ -163,17 +164,7 @@
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
 },
-    
-"custom/scratchpad-indicator": {
-        "interval": 3,
-        "return-type": "json",
-        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '( select(.name == \"root\") | .nodes[] | select(.name == \"__i3\") | .nodes[] | select(.name == \"__i3_scratch\") | .focus) as $scratch_ids | [..  | (.nodes? + .floating_nodes?) // empty | .[] | select(.id |IN($scratch_ids[]))] as $scratch_nodes | { text: \"\\($scratch_nodes | length)\", tooltip: $scratch_nodes | map(\"\\(.app_id // .window_properties.class) (\\(.id)): \\(.name)\") | join(\"\\n\") }'",
-        "format": "{} 􏠜",
-        "on-click": "exec swaymsg 'scratchpad show'",
-        "on-click-right": "exec swaymsg 'move scratchpad'"
-    },
 
 "battery" : {
 	"interval": 10,
@@ -181,19 +172,25 @@
 		"warning": 30,
 		"critical": 10 },
 	"format": "{icon} {capacity}%",
-	"format-plugged": " {capacity}%",
-	"format-charging": "󰂄 {capacity}%",
+	"format-charging": "󱐋 {capacity}%",
 	"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-
 	},
 
 "bluetooth": {
-    "format": "󰂯",
-    "format-off": "󰂲",
-    "format-disabled": "",
-    "interval": 30,
-    "on-click": "sh $HOME/.config/scripts/toggleBT.sh",
-    "on-click-right": "kitty -e bluetuith",
-    "format-no-controller": ""
-  }
+	"format": "󰂯",
+	"format-off": "󰂲",
+	"format-disabled": "",
+	"interval": 30,
+	"on-click": "sh $HOME/.config/scripts/toggleBT.sh",
+	"on-click-right": "kitty -e bluetuith",
+	"format-no-controller": ""
+	},
+
+"custom/tabletmode": {
+	"format": "{text}",
+	"exec": "$HOME/.config/scripts/tabletmode.sh",
+	"interval": 2,
+	"return-type": "text",
+	"on-click": "bash $HOME/.config/scripts/rotateScreen.sh"
+	}
 },
