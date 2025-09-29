@@ -64,7 +64,7 @@
 #waybar {
     background: transparent;
     color: @fg1;
-    font-family: "JetBrainsMono";
+    font-family: inherit;
     font-size: 14px;
     font-weight: bold;
 }
@@ -107,7 +107,8 @@
 #cpu.critical,
 #temperature.critical,
 #battery.critical {
-    color: @red;
+    color: @bg4;
+    background: @red;
 }
 
 /* Each critical that should blink */
@@ -255,7 +256,7 @@
     color: @fg1;
 }
 #custom-cpugovernor.perf {
-    
+
 }
 #temperature {
     background-color: @bg2;
