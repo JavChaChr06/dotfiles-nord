@@ -5,6 +5,7 @@
 
 "modules-left": [
 	"cpu",
+	"memory",
 	"temperature",
 	"custom/pacman",
 	"idle_inhibitor",
@@ -80,6 +81,11 @@
         "format-critical": "  {temperatureC}°C",
         "format": "{icon}  {temperatureC}°C",
         "format-icons": ["", "", ""]
+},
+
+"memory": {
+	"interval": 10,
+	"format": "  {}%"
 },
 
 "network": {
@@ -189,8 +195,8 @@
 "custom/tabletmode": {
 	"format": "{text}",
 	"exec": "$HOME/.config/scripts/tabletmode.sh",
-	"interval": 2,
+	"interval": 1,
 	"return-type": "text",
 	"on-click": "bash $HOME/.config/scripts/rotateScreen.sh"
 	}
-},
+}

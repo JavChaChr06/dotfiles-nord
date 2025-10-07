@@ -1,9 +1,14 @@
 #!/bin/sh
 
 FILE=$HOME/.config/scripts/.tabletmode
+TOGGLE=$HOME/.config/scripts/.rotateScreen
 
 if [ -e $FILE ]; then
-	echo '󰢅 '
+	if [ -e $TOGGLE ]; then
+		echo '󰑸 '
+	else
+		echo ' '
+	fi
 else
 	echo ''
 fi
