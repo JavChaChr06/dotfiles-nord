@@ -1,0 +1,205 @@
+{
+"layer": "top",
+"position": "top",
+"height": 36,
+
+"modules-left": [
+	"cpu",
+	"memory",
+	"custom/hwinfo",
+	"custom/pacman",
+	"idle_inhibitor",
+	"custom/tabletmode"
+],
+
+"modules-center": [
+	"hyprland/workspaces"
+],
+
+"modules-right": [
+	"pulseaudio",
+	"network",
+	"bluetooth",
+	"tray",
+	"clock",
+	"battery"
+],
+
+
+"hyprland/workspaces": {
+	"disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+        	"1": "󰎦",
+        	"2": "󰎩",
+		"3": "󰎬",
+		"4": "󰎮",
+		"5": "󰎰",
+		"6": "󰎵",
+		"7": "󰎸",
+		"8": "󰎻",
+		"9": "󰎾",
+		"10": "󰽾"
+        }
+},
+
+"idle_inhibitor": {
+        "format": "{icon} ",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": "false"
+},
+
+"tray": {
+        "icon-size": 16,
+        "spacing": 5
+},
+
+"clock": {
+        "format": "{:%H:%M | %e %b}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "today-format": "<b>{}</b>",
+        "on-click": "gnome-calendar"
+},
+
+"cpu": {
+        "interval": "1",
+        "format": "   {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+        "max-length": 16,
+        "min-length": 16,
+        "on-click": "kitty -e btop",
+        "tooltip": true
+},
+
+"temperature": {
+        "interval": "4",
+        "critical-threshold": 70,
+	"return-type": "json"
+},
+
+"memory": {
+	"interval": 10,
+	"format": "  {}%"
+},
+
+"network": {
+        "format-wifi": "   {essid}",
+        "format-ethernet": "   {ifname}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "󰕑 ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "family": "ipv4",
+        "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}GHz\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n {bandwidthUpBits}  {bandwidthDownBits}"
+},
+
+"pulseaudio": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{icon}  {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "",
+        "format-source-muted": "󰍭",
+        "format-icons": {
+            "headphone": "",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+},
+
+"custom/pacman": {
+	"format": "{icon} {text}",
+	"return-type": "json",
+	"format-icons": {
+		"pending-updates": " ",
+		"updated": ""
+	},
+	"exec": "waybar-updates",
+	"on-click": "kitty -e yay"
+},
+
+"custom/weather": {
+        "exec": "curl 'https://wttr.in/?format=1'",
+        "interval": 3600
+},
+
+"custom/gpu": {
+      "exec": "$HOME/.config/waybar/custom_modules/custom-gpu.sh",
+      "return-type": "json",
+      "format": "  {}",
+      "interval": 2,
+      "tooltip": "{tooltip}",
+      "max-length": 19,
+      "min-length": 19,
+      "on-click": "powerupp"
+
+},
+
+"custom/cpugovernor": {
+      "format": "{icon}",
+      "interval": "30",
+      "return-type": "json",
+      "exec": "$HOME/.config/waybar/custom_modules/cpugovernor.sh",
+      "min-length": 2,
+      "max-length": 2,
+        "format-icons": {
+            "perf": "",
+            "sched": ""
+	}
+},
+
+"custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+},
+
+"battery" : {
+	"interval": 10,
+	"states": {
+		"warning": 30,
+		"critical": 10 },
+	"format": "{icon} {capacity}%",
+	"format-charging": "󱐋 {capacity}%",
+	"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+	},
+
+"bluetooth": {
+	"format": "󰂯",
+	"format-off": "󰂲",
+	"format-disabled": "",
+	"interval": 30,
+	"on-click": "sh $HOME/.config/scripts/toggleBT.sh",
+	"on-click-right": "kitty -e bluetuith",
+	"format-no-controller": ""
+	},
+
+"custom/tabletmode": {
+	"format": "{text}",
+	"exec": "$HOME/.config/scripts/tabletmode.sh",
+	"interval": 1,
+	"return-type": "text",
+	"on-click": "bash $HOME/.config/scripts/rotateScreen.sh"
+	},
+
+"custom/hwinfo": {
+	"exec": "python3 /home/javi/.config/scripts/hwinfo.py --interval 5",
+	"interval": 5,
+	"return-type": "json"
+	}
+}

@@ -1,0 +1,12 @@
+input_device: /dev/input/by-path/platform-PNP0C14:03-event
+
+modes:
+  laptop:
+    - hyprctl keyword "general:gaps_in" 2
+    - hyprctl keyword "general:gaps_out" 4
+    - rm -rf $HOME/.config/scripts/.tabletmode
+    - rm -rf $HOME/.config/scripts/.rotateScreen
+  tablet:
+    - hyprctl keyword "general:gaps_in" 6
+    - hyprctl keyword "general:gaps_out" 12
+    - touch $HOME/.config/scripts/.tabletmode
