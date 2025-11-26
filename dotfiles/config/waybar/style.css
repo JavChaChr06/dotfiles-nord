@@ -64,7 +64,7 @@
 #waybar {
     background: transparent;
     color: @fg1;
-    font-family: inherit;
+    font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 14px;
     font-weight: bold;
 }
@@ -88,6 +88,7 @@
 #bluetooth,
 #language,
 #custom-hwinfo,
+#custom-notification
 #custom-cpugovernor {
     padding-left: 0.6em;
     padding-right: 0.6em;
@@ -317,4 +318,9 @@
 }
 #custom-hwinfo {
     background: @bg2;
+}
+#custom-notification {
+	background: @bg2;
+	padding-left: 9px;
+	padding-right: 12px;
 }
