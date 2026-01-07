@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOGGLE=$HOME/dotfiles-nord/.config/scripts/.toggleKbd
+TOGGLE=$HOME/.config/scripts/.toggleKbd
 
 if [ ! -e $TOGGLE ]; then
 	touch $TOGGLE
