@@ -1,6 +1,0 @@
-2025/10/30-08:05:18.649 5ee Reusing MANIFEST /home/javi/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
-2025/10/30-08:05:18.659 5ee Recovering log #27
-2025/10/30-08:05:18.660 5ee Reusing old log /home/javi/.config/vesktop/sessionData/Local Storage/leveldb/000027.log 
-2025/10/30-10:12:39.573 5ee Level-0 table #32: started
-2025/10/30-10:12:39.578 5ee Level-0 table #32: 21589 bytes OK
-2025/10/30-10:12:39.580 5ee Delete type=0 #27
