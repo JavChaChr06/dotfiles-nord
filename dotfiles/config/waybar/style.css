@@ -1,0 +1,326 @@
+@keyframes blink-warning {
+    70% {
+        color: @bg4;
+    }
+
+    to {
+        color: @bg4;
+        background-color: @orange;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: @fg1;
+    }
+
+    to {
+        color: @fg1;
+        background-color: @red;
+    }
+}
+@keyframes blink-update {
+	to {
+		background-color: @mint;
+	}
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Styles
+ * -------------------------------------------------------------------------- */
+
+/* COLORS */
+
+@define-color bg1 #2E3440;
+@define-color bg2 #3B4252;
+@define-color bg3 #434C5E;
+@define-color bg4 #4C566A;
+
+@define-color fg1 #d8dee9;
+@define-color fg2 #e5e9f0;
+@define-color fg3 #eceff4;
+
+@define-color mint #8fbcbb;
+@define-color ice #88c0d0;
+@define-color lilac #81a1c1;
+@define-color blue #5e81ac;
+
+@define-color red #bf616a;
+@define-color orange #d08770;
+@define-color yellow #ebcb8b;
+@define-color green #a3be8c;
+@define-color purple #b48ead;
+
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 3px;
+    min-height: 0;
+    margin: 0.2em 0.3em 0.2em 0.3em;
+}
+
+/* The whole bar */
+#waybar {
+    background: transparent;
+    color: @fg1;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Each module */
+#battery,
+#clock,
+#cpu,
+#custom-layout,
+#custom-tabletmode,
+#memory,
+#network,
+#pulseaudio,
+#temperature,
+#custom-alsa,
+#custom-pacman,
+#custom-weather,
+#custom-gpu,
+#tray,
+#backlight,
+#bluetooth,
+#language,
+#custom-hwinfo,
+#custom-notification
+#custom-cpugovernor {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+}
+
+/* Each module that should blink */
+#mode,
+#memory,
+#temperature,
+#custom-hwinfo,
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Each critical module */
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#custom-hwinfo.critical,
+#battery.critical {
+    color: @bg4;
+    background: @red;
+}
+
+/* Each critical that should blink */
+#mode,
+#memory.critical,
+#temperature.critical,
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#custom-hwinfo.warning,
+#battery.warning {
+    background: @yellow;
+    color: @bg4;
+}
+
+/* Each warning that should blink */
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+/* And now modules themselves in their respective order */
+
+#mode {
+    color: @fg1;
+    background: @bg2;
+}
+
+/* Workspaces stuff */
+
+#workspaces {
+}
+
+#workspaces button {
+    font-weight: bold;
+    padding: 0 0.2em;
+    padding-right: 0.3em;
+    background: @bg2;
+    font-size: 1em;
+}
+
+#workspaces button.active {
+	background: @fg1;
+	color: @bg4;
+}
+
+#workspaces button.focused {
+    background: @bg4;
+}
+
+#workspaces button.urgent {
+    border-color: @red;
+    border: 2px solid;
+    color: @red;
+    opacity: 1;
+}
+
+#window {
+    margin-right: 40px;
+    margin-left: 40px;
+    font-weight: normal;
+}
+#bluetooth {
+    background: @bg2;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0 0.6em;
+}
+#bluetooth.on {
+	background: @lilac;
+	color: @bg4;
+}
+#bluetooth.off {
+	color: @fg1;
+}
+#custom-gpu {
+    background: @bg3;
+    font-weight: bold;
+    padding: 0 0.6em;
+}
+#custom-weather {
+    background: @bg1;
+    font-weight: bold;
+    padding: 0 0.6em;
+}
+#custom-pacman {
+    background: @bg2;
+    color: @fg1;
+    font-weight: bold;
+    padding: 0 0.6em;
+}
+#custom-pacman.pending-updates {
+	animation-name: blink-update;
+	animation-duration: 3s;
+
+}
+#custom-scratchpad-indicator {
+    background: @fg1;
+    color: @bg4;
+    font-weight: bold;
+    padding: 0 0.6em;
+}
+#idle_inhibitor {
+    background: @bg2;
+    font-weight: bold;
+    padding: 0 0.6em;
+}
+#idle_inhibitor.activated {
+	background: @lilac;
+	color: @bg4;
+}
+#custom-alsa {
+    background: @bg2;
+}
+
+#network {
+    background: @bg2;
+}
+
+#memory {
+    background: @bg2;
+}
+
+#cpu {
+    background: @bg2;
+    color: @fg1;
+}
+#cpu.critical {
+	background: @red;
+	color: @bg4;
+}
+#language {
+    background: @bg2;
+    color: @fg1;
+    padding: 0 0.4em;
+}
+#custom-cpugovernor {
+    background-color: @bg2;
+    color: @fg1;
+}
+#custom-cpugovernor.perf {
+
+}
+#temperature {
+    background-color: @bg2;
+    color: @fg2;
+}
+#temperature.critical {
+    background:  @red;
+    color: @bg4;
+}
+#custom-layout {
+    background: @bg2;
+}
+
+#battery {
+    background: @bg2;
+}
+
+#backlight {
+    background: @bg2;
+}
+
+#clock {
+    background: @bg2;
+    color: @fg1;
+}
+#clock.date {
+    background: @bg2;
+}
+
+#clock.time {
+    background: @bg2;
+}
+
+#pulseaudio { /* Unsused but kept for those who needs it */
+    background: @bg2;
+    color: @fg1;
+}
+
+#pulseaudio.muted {
+    background: @red;
+    color: @bg4;
+    /* No styles */
+}
+#pulseaudio.source-muted {
+    background: @red;
+    color: @fg1;
+    /* No styles */
+}
+#tray {
+    background: @bg2;
+}
+#custom-tabletmode {
+    background: @bg2;
+}
+#custom-hwinfo {
+    background: @bg2;
+}
+#custom-notification {
+	background: @bg2;
+	padding-left: 9px;
+	padding-right: 12px;
+}

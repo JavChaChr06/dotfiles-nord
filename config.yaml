@@ -1,0 +1,104 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+dotfiles:
+  d_hypr:
+    src: config/hypr
+    dst: ~/.config/hypr
+  d_gtk-3.0:
+    src: config/gtk-3.0
+    dst: ~/.config/gtk-3.0
+  d_btop:
+    src: config/btop
+    dst: ~/.config/btop
+  d_dconf:
+    src: config/dconf
+    dst: ~/.config/dconf
+  d_dotdrop:
+    src: config/dotdrop
+    dst: ~/.config/dotdrop
+  d_gtk-4.0:
+    src: config/gtk-4.0
+    dst: ~/.config/gtk-4.0
+  d_kitty:
+    src: config/kitty
+    dst: ~/.config/kitty
+  d_neofetch:
+    src: config/neofetch
+    dst: ~/.config/neofetch
+  d_nvim:
+    src: config/nvim
+    dst: ~/.config/nvim
+  d_nwg-dock-hyprland:
+    src: config/nwg-dock-hyprland
+    dst: ~/.config/nwg-dock-hyprland
+  d_nwg-look:
+    src: config/nwg-look
+    dst: ~/.config/nwg-look
+  d_ohmyposh:
+    src: config/ohmyposh
+    dst: ~/.config/ohmyposh
+  d_scripts:
+    src: config/scripts
+    dst: ~/.config/scripts
+  d_thunar:
+    src: config/Thunar
+    dst: ~/.config/Thunar
+  d_vesktop:
+    src: config/vesktop
+    dst: ~/.config/vesktop
+    chmod: '700'
+  f_watch_tablet.yml:
+    src: config/watch_tablet.yml
+    dst: ~/.config/watch_tablet.yml
+  d_waybar:
+    src: config/waybar
+    dst: ~/.config/waybar
+  d_wlogout:
+    src: config/wlogout
+    dst: ~/.config/wlogout
+  f_zshrc:
+    src: zshrc
+    dst: ~/.zshrc
+  f_hwinfo.py:
+    src: config/scripts/hwinfo.py
+    dst: ~/.config/scripts/hwinfo.py
+  f_style.css:
+    src: config/wofi/style.css
+    dst: ~/.config/wofi/style.css
+variables:
+  gtk_size: '1'
+  qt_size: '1'
+profiles:
+  JaviLaptop:
+    dotfiles:
+    - d_hypr
+    - d_gtk-3.0
+    - d_btop
+    - d_dconf
+    - d_dotdrop
+    - d_gtk-4.0
+    - d_kitty
+    - d_neofetch
+    - d_nvim
+    - d_nwg-dock-hyprland
+    - d_nwg-look
+    - d_ohmyposh
+    - d_scripts
+    - d_thunar
+    - d_vesktop
+    - f_watch_tablet.yml
+    - d_waybar
+    - d_wlogout
+    - f_zshrc
+    - f_hwinfo.py
+    - f_style.css
+    variables:
+      gtk_size: '2'
+      qt_size: '2'
