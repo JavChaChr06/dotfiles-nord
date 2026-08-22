@@ -48,8 +48,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls -a --color'
-alias pushdot='sh $HOME/dotfiles-nord/push_dotfiles.sh'
-alias pulldot='sh $HOME/dotfiles-nord/pull_dotfiles.sh'
+alias cfg='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # Shell integrations
 eval "$(fzf --zsh)"
