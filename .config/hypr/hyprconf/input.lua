@@ -46,7 +46,7 @@ hl.config({
 		},
 
 		hyprexpo = {
-            		columns = 3,
+            		columns = 2,
             		gaps_in = 5,
             		gaps_out = 0,
             		bg_col = "rgb(111111)",
@@ -77,3 +77,9 @@ hl.plugin.hyprgrass.bind {
     pattern = {kind = "edge", origin = "d", direction = "u"},
     action = hl.dsp.exec_cmd('sh $HOME/.config/scripts/toggleKbd.sh'),
 }
+
+hl.plugin.hyprexpo.gesture({
+    fingers = 4,
+    direction = "up",
+    action = "expo",
+})
