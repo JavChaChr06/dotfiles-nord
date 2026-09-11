@@ -9,6 +9,10 @@ hl.bind(mainMod .. " + P",	hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + F",	hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + L",	hl.dsp.exec_cmd(logoutMenu))
 
+hl.bind("SUPER + G", function()
+    hl.plugin.hyprexpo.expo("toggle")
+end)
+
 hl.bind(mainMod .. " + R",		hl.dsp.exec_cmd("hyprshot -m window -o /home/javi/Pictures/Screenshots/"))
 hl.bind(mainMod .. " + SHIFT + R",	hl.dsp.exec_cmd("hyprshot -m region -o /home/javi/Pictures/Screenshots/"))
 

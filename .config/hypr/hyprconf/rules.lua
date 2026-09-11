@@ -56,3 +56,8 @@ hl.layer_rule({
 	blur = false,
 })
 
+hl.layer_rule({
+    name = "selection-noblur",
+    match = { namespace = "selection" },
+    blur = false,
+})

@@ -1,7 +1,10 @@
 hl.on("hyprland.start", function ()
-	hl.exec_cmd('waybar & hyprpaper & watch_tablet & iio-hyprland')
+	hl.exec_cmd('hyprpaper & hypridle & hyprsunset')
+	hl.exec_cmd('waybar & watch_tablet & iio-hyprland')
 	hl.exec_cmd('nwg-dock-hyprland -d -i 32 -nolauncher -w 0')
 	hl.exec_cmd('wvkbd-mobintl --hidden -L 250 -R 2 --fn "Jetbrains Mono 16"')
+	hl.exec_cmd('systemctl --user start hyprpolkitagent')
+	hl.exec_cmd("hyprpm reload")
 end)
 
 hl.on("hyprland.start", function ()

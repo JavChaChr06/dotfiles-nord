@@ -43,7 +43,18 @@ hl.config({
 			sensitivity = 4.0,
 			long_press_delay = 400,
 			edge_margin = 10,
-		}
+		},
+
+		hyprexpo = {
+            		columns = 3,
+            		gaps_in = 5,
+            		gaps_out = 0,
+            		bg_col = "rgb(111111)",
+            		workspace_method = "center current",
+            		gesture_distance = 200,
+            		cancel_key = "escape",
+            		show_cursor = 1,
+        	},
 	}
 })
 
@@ -66,4 +77,3 @@ hl.plugin.hyprgrass.bind {
     pattern = {kind = "edge", origin = "d", direction = "u"},
     action = hl.dsp.exec_cmd('sh $HOME/.config/scripts/toggleKbd.sh'),
 }
-
