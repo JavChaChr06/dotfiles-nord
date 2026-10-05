@@ -13,8 +13,8 @@ hl.bind("SUPER + G", function()
     hl.plugin.hyprexpo.expo("toggle")
 end)
 
-hl.bind(mainMod .. " + R",		hl.dsp.exec_cmd("hyprshot -m window -o /home/javi/Pictures/Screenshots/"))
-hl.bind(mainMod .. " + SHIFT + R",	hl.dsp.exec_cmd("hyprshot -m region -o /home/javi/Pictures/Screenshots/"))
+hl.bind(mainMod .. " + R",		hl.dsp.exec_cmd("hyprshot -m window -o $HOME/Pictures/Screenshots/"))
+hl.bind(mainMod .. " + SHIFT + R",	hl.dsp.exec_cmd("hyprshot -m region -o $HOME/Pictures/Screenshots/"))
 
 hl.bind(mainMod .. " + left",	hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right",	hl.dsp.focus({ direction = "right" }))

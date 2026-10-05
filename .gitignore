@@ -1,0 +1,4 @@
+# Runtime state written by the toggle scripts
+.config/scripts/.toggle*
+.config/scripts/.tabletmode
+.config/scripts/.rotateScreen
