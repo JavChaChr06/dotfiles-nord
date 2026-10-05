@@ -10,7 +10,10 @@ hl.bind(mainMod .. " + F",	hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + L",	hl.dsp.exec_cmd(logoutMenu))
 
 hl.bind("SUPER + G", function()
-    hl.plugin.hyprexpo.expo("toggle")
+    local expo = hl.plugin.hyprexpo
+    if expo then
+        expo.expo("toggle")
+    end
 end)
 
 hl.bind(mainMod .. " + R",		hl.dsp.exec_cmd("hyprshot -m window -o /home/javi/Pictures/Screenshots/"))

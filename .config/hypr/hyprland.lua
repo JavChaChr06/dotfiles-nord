@@ -13,4 +13,5 @@ require("hyprconf/look")
 require("hyprconf/input")
 require("hyprconf/keybinds")
 require("hyprconf/rules")
+require("hyprconf/plugins")
 

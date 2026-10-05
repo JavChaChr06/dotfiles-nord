@@ -1,11 +1,13 @@
+@import url("../theme/active.css");
+
 @keyframes blink-warning {
     70% {
         color: @bg4;
     }
 
     to {
-        color: @bg4;
-        background-color: @orange;
+        color: @warn_text;
+        background-color: @warn;
     }
 }
 
@@ -15,8 +17,8 @@
     }
 
     to {
-        color: @fg1;
-        background-color: @red;
+        color: @crit_text;
+        background-color: @crit;
     }
 }
 @keyframes blink-update {
@@ -30,27 +32,6 @@
  * Styles
  * -------------------------------------------------------------------------- */
 
-/* COLORS */
-
-@define-color bg1 #2E3440;
-@define-color bg2 #3B4252;
-@define-color bg3 #434C5E;
-@define-color bg4 #4C566A;
-
-@define-color fg1 #d8dee9;
-@define-color fg2 #e5e9f0;
-@define-color fg3 #eceff4;
-
-@define-color mint #8fbcbb;
-@define-color ice #88c0d0;
-@define-color lilac #81a1c1;
-@define-color blue #5e81ac;
-
-@define-color red #bf616a;
-@define-color orange #d08770;
-@define-color yellow #ebcb8b;
-@define-color green #a3be8c;
-@define-color purple #b48ead;
 
 /* Reset all styles */
 * {
@@ -64,9 +45,8 @@
 #waybar {
     background: transparent;
     color: @fg1;
-    font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 14px;
-    font-weight: bold;
+    /* font-family / font-weight come from theme/active.css */
 }
 
 /* Each module */
@@ -111,8 +91,8 @@
 #temperature.critical,
 #custom-hwinfo.critical,
 #battery.critical {
-    color: @bg4;
-    background: @red;
+    color: @crit_text;
+    background: @crit;
 }
 
 /* Each critical that should blink */
@@ -131,8 +111,8 @@
 #temperature.warning,
 #custom-hwinfo.warning,
 #battery.warning {
-    background: @yellow;
-    color: @bg4;
+    background: @warn;
+    color: @warn_text;
 }
 
 /* Each warning that should blink */
@@ -162,8 +142,8 @@
 }
 
 #workspaces button.active {
-	background: @fg1;
-	color: @bg4;
+	background: @fg3;
+	color: @bg1;
 }
 
 #workspaces button.focused {
@@ -189,8 +169,8 @@
     padding: 0 0.6em;
 }
 #bluetooth.on {
-	background: @lilac;
-	color: @bg4;
+	background: @accent;
+	color: @bg1;
 }
 #bluetooth.off {
 	color: @fg1;
@@ -217,8 +197,8 @@
 
 }
 #custom-scratchpad-indicator {
-    background: @fg1;
-    color: @bg4;
+    background: @fg3;
+    color: @bg1;
     font-weight: bold;
     padding: 0 0.6em;
 }
@@ -228,8 +208,8 @@
     padding: 0 0.6em;
 }
 #idle_inhibitor.activated {
-	background: @lilac;
-	color: @bg4;
+	background: @accent;
+	color: @bg1;
 }
 #custom-alsa {
     background: @bg2;
@@ -248,8 +228,8 @@
     color: @fg1;
 }
 #cpu.critical {
-	background: @red;
-	color: @bg4;
+	background: @crit;
+	color: @crit_text;
 }
 #language {
     background: @bg2;
@@ -268,8 +248,8 @@
     color: @fg2;
 }
 #temperature.critical {
-    background:  @red;
-    color: @bg4;
+    background: @crit;
+    color: @crit_text;
 }
 #custom-layout {
     background: @bg2;
@@ -301,13 +281,13 @@
 }
 
 #pulseaudio.muted {
-    background: @red;
-    color: @bg4;
+    background: @crit;
+    color: @crit_text;
     /* No styles */
 }
 #pulseaudio.source-muted {
-    background: @red;
-    color: @fg1;
+    background: @crit;
+    color: @crit_text;
     /* No styles */
 }
 #tray {
