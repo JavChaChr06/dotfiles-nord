@@ -198,7 +198,7 @@
 	},
 
 "custom/hwinfo": {
-	"exec": "python3 /home/javi/.config/scripts/hwinfo.py --interval 5",
+	"exec": "python3 $HOME/.config/scripts/hwinfo.py --interval 5",
 	"format": "{}",
 	"return-type": "json"
 	},
