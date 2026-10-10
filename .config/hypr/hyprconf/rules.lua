@@ -27,6 +27,15 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	name	= "claude-quick-entry",
+	match	= { class = "^com\\.anthropic\\.Claude$", float = true },
+
+	border_size = 0,
+	no_shadow = true,
+	no_blur = true,
+})
+
+hl.window_rule({
 	name	= "intellij-fix",
 	match	= { class = "jetbrains-.*" },
 
