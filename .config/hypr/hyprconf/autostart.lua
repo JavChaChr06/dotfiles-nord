@@ -5,6 +5,7 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd('wvkbd-mobintl --hidden -L 250 -R 2 --fn "Jetbrains Mono 16"')
 	hl.exec_cmd('systemctl --user start hyprpolkitagent')
 	hl.exec_cmd("hyprpm reload")
+	hl.exec_cmd("hyprctl plugin load '/home/javi/.local/src/hyprgrass/build/src/libhyprgrass.so'")
 end)
 
 hl.on("hyprland.start", function ()
