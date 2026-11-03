@@ -58,3 +58,6 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/nord.json)"
 export PATH=/home/david/pear/bin:$PATH
 export EDITOR='nvim'
 export VISUAL='nvim'
+
+#Autostart
+fastfetch

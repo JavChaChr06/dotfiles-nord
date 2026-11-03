@@ -6,6 +6,7 @@ hl.on("hyprland.start", function ()
 	hl.exec_cmd('systemctl --user start hyprpolkitagent')
 	hl.exec_cmd("hyprpm reload")
 	hl.exec_cmd("hyprctl plugin load '/home/javi/.local/src/hyprgrass/build/src/libhyprgrass.so'")
+	hl.exec_cmd("hyprctl plugin load '/home/javi/.local/src/Hyprspace/Hyprspace.so'")
 end)
 
 hl.on("hyprland.start", function ()
