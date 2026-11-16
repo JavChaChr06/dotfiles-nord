@@ -1,0 +1,507 @@
+/* -----------------------------------------------------------------------------
+ * swaync — Nord, matched to waybar / hyprland  (v2)
+ * GTK3 CSS. Needs "cssPriority": "user" in config.json.
+ *
+ * Spacing rhythm — do not break it:
+ *   panel padding      8px
+ *   gap between blocks 6px  (margin-bottom only, never left/right)
+ *   block padding      10px 12px
+ *   radius             3px everywhere, 6px on the panel itself
+ * Accents: frost (@ice) for anything interactive, @red only for destructive.
+ * -------------------------------------------------------------------------- */
+
+@define-color bg1 #2e3440;
+@define-color bg2 #3b4252;
+@define-color bg3 #434c5e;
+@define-color bg4 #4c566a;
+
+@define-color fg1 #d8dee9;
+@define-color fg2 #e5e9f0;
+@define-color fg3 #eceff4;
+
+@define-color mint #8fbcbb;
+@define-color ice #88c0d0;
+@define-color lilac #81a1c1;
+@define-color blue #5e81ac;
+
+@define-color red #bf616a;
+@define-color orange #d08770;
+@define-color yellow #ebcb8b;
+@define-color green #a3be8c;
+@define-color purple #b48ead;
+
+@define-color dim alpha(@fg1, 0.5);
+
+@keyframes blink-critical {
+    to {
+        border-left-color: @orange;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * Base
+ * -------------------------------------------------------------------------- */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono Nerd Font", monospace;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+
+.blank-window,
+.control-center-bg {
+    background: transparent;
+}
+
+/* kill any stray GTK trough/highlight outside the two slider widgets */
+.widget-title trough,
+.widget-title highlight,
+.widget-dnd trough,
+.widget-dnd highlight,
+.widget-buttons-grid trough,
+.widget-buttons-grid highlight,
+.widget-mpris trough,
+.widget-mpris highlight {
+    background: transparent;
+    min-height: 0;
+    min-width: 0;
+}
+
+/* -----------------------------------------------------------------------------
+ * Panel
+ * -------------------------------------------------------------------------- */
+
+.control-center {
+    background: alpha(@bg1, 0.80);
+    border: 2px solid @bg4;
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgba(18, 18, 31, 0.85);
+    padding: 8px;
+    color: @fg1;
+}
+
+.control-center-list,
+.control-center-list-placeholder {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.control-center-list-placeholder {
+    color: alpha(@fg1, 0.28);
+    font-size: 15px;
+    font-weight: normal;
+}
+
+scrollbar,
+scrollbar trough {
+    background: transparent;
+    margin: 0;
+}
+
+scrollbar slider {
+    background: @bg4;
+    border-radius: 3px;
+    min-width: 4px;
+    margin: 1px;
+}
+
+scrollbar slider:hover {
+    background: @ice;
+}
+
+/* -----------------------------------------------------------------------------
+ * Every block: same edges, same rhythm
+ * -------------------------------------------------------------------------- */
+
+.widget-title,
+.widget-dnd,
+.widget-mpris,
+.widget-buttons-grid,
+.widget-volume,
+.widget-backlight,
+.widget-label,
+.widget-inhibitors {
+    background: @bg2;
+    border-radius: 3px;
+    margin: 0 0 6px 0;
+    padding: 10px 12px;
+    color: @fg1;
+}
+
+/* --- Title --- */
+
+.widget-title {
+    font-size: 15px;
+    color: @fg3;
+    padding: 8px 8px 8px 12px;
+}
+
+.widget-title > button {
+    background: @bg3;
+    color: @fg1;
+    border-radius: 3px;
+    padding: 4px 12px;
+    min-height: 26px;
+}
+
+.widget-title > button:hover {
+    background: @red;
+    color: @bg1;
+}
+
+/* --- DND --- */
+
+.widget-dnd {
+    padding: 8px 12px;
+}
+
+.widget-dnd > switch {
+    background: @bg4;
+    border-radius: 3px;
+    min-width: 48px;
+    min-height: 24px;
+    padding: 0;
+}
+
+.widget-dnd > switch:checked {
+    background: @ice;
+}
+
+.widget-dnd > switch slider {
+    background: @fg1;
+    border-radius: 3px;
+    min-width: 20px;
+    min-height: 20px;
+    margin: 2px;
+}
+
+.widget-dnd > switch:checked slider {
+    background: @bg1;
+}
+
+/* --- Buttons grid: 70px min-width forces a clean 5 per row at 440px --- */
+
+.widget-buttons-grid {
+    padding: 6px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+    background: @bg3;
+    color: @fg1;
+    border-radius: 3px;
+    margin: 4px;
+    padding: 0;
+    min-width: 70px;
+    min-height: 44px;
+    font-size: 17px;
+    font-weight: normal;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+    background: @bg4;
+    color: @fg3;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
+    background: @ice;
+    color: @bg1;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked:hover {
+    background: @mint;
+    color: @bg1;
+}
+
+/* --- Sliders: fixed label width so both troughs start at the same x --- */
+
+.widget-volume,
+.widget-backlight {
+    padding: 8px 12px;
+}
+
+.widget-volume > box > label,
+.widget-backlight > box > label,
+.widget-volume label,
+.widget-backlight label {
+    font-size: 16px;
+    font-weight: normal;
+    color: @fg1;
+    min-width: 22px;
+    margin-right: 12px;
+}
+
+.widget-volume trough,
+.widget-backlight trough {
+    background: @bg4;
+    border-radius: 3px;
+    min-height: 6px;
+    margin: 0;
+}
+
+.widget-volume highlight,
+.widget-backlight highlight {
+    background: @ice;
+    border-radius: 3px;
+    min-height: 6px;
+}
+
+.widget-volume slider,
+.widget-backlight slider {
+    background: @fg1;
+    border-radius: 3px;
+    min-width: 12px;
+    min-height: 12px;
+    margin: -5px;
+}
+
+.widget-volume > box > button,
+.per-app-volume {
+    background: @bg3;
+    color: @fg1;
+    border-radius: 3px;
+    padding: 2px 8px;
+    margin-left: 10px;
+}
+
+.widget-volume > box > button:hover {
+    background: @bg4;
+}
+
+/* --- MPRIS --- */
+
+.widget-mpris {
+    padding: 10px 12px;
+}
+
+.widget-mpris-player {
+    background: transparent;
+    padding: 0;
+}
+
+.widget-mpris-album-art {
+    border-radius: 3px;
+    margin-right: 12px;
+}
+
+.widget-mpris-title {
+    font-size: 15px;
+    color: @fg3;
+}
+
+.widget-mpris-subtitle {
+    font-size: 13px;
+    font-weight: normal;
+    color: @dim;
+}
+
+.widget-mpris > box > button {
+    background: transparent;
+    color: @fg1;
+    padding: 0 8px;
+    font-size: 16px;
+}
+
+.widget-mpris > box > button:hover {
+    color: @ice;
+}
+
+/* -----------------------------------------------------------------------------
+ * Notifications — same edges as the widget blocks above
+ * -------------------------------------------------------------------------- */
+
+.notification-row {
+    outline: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+    background: transparent;
+}
+
+.notification-background {
+    background: @bg2;
+    border-radius: 3px;
+    border-left: 3px solid @bg4;
+    margin: 0 0 6px 0;
+    padding: 0;
+}
+
+.notification-background:hover {
+    background: @bg3;
+}
+
+.notification {
+    background: transparent;
+    border-radius: 3px;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-content {
+    background: transparent;
+    padding: 10px 12px;
+    color: @fg1;
+}
+
+/* urgency: frost for normal, red for critical, nothing loud for low */
+.notification-background.low,
+.notification-background .notification.low {
+    border-left-color: @bg4;
+}
+
+.notification-background.normal,
+.notification-background .notification.normal {
+    border-left-color: @ice;
+}
+
+.notification-background.critical,
+.notification-background .notification.critical {
+    border-left-color: @red;
+    animation-name: blink-critical;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 6;
+    animation-direction: alternate;
+}
+
+.summary {
+    font-size: 14px;
+    color: @fg3;
+}
+
+.time {
+    font-size: 12px;
+    font-weight: normal;
+    color: @dim;
+    margin-right: 26px;
+}
+
+.body {
+    font-size: 13px;
+    font-weight: normal;
+    color: @fg1;
+    margin-top: 2px;
+}
+
+.body-image {
+    border-radius: 3px;
+    margin-top: 8px;
+}
+
+.image,
+.app-icon {
+    border-radius: 3px;
+    margin-right: 12px;
+}
+
+.close-button {
+    background: transparent;
+    color: @dim;
+    border-radius: 3px;
+    margin: 6px;
+    padding: 0;
+    min-width: 22px;
+    min-height: 22px;
+}
+
+.close-button:hover {
+    background: @red;
+    color: @bg1;
+}
+
+.notification-default-action {
+    background: transparent;
+    border-radius: 3px;
+    padding: 0;
+}
+
+.notification-action {
+    background: @bg3;
+    color: @fg1;
+    border-radius: 3px;
+    margin: 0 6px 6px 6px;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.notification-action:hover {
+    background: @ice;
+    color: @bg1;
+}
+
+.inline-reply-entry {
+    background: @bg1;
+    color: @fg1;
+    border: 1px solid @bg4;
+    border-radius: 3px;
+    padding: 5px 8px;
+    margin: 0 6px 6px 6px;
+    font-weight: normal;
+}
+
+.inline-reply-button {
+    background: @bg3;
+    color: @fg1;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 0 6px 6px 0;
+}
+
+.inline-reply-button:hover {
+    background: @ice;
+    color: @bg1;
+}
+
+.notification-group-headers {
+    color: @dim;
+    font-size: 13px;
+    padding: 4px 12px;
+}
+
+.notification-group-icon {
+    color: @ice;
+}
+
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+    background: @bg3;
+    color: @fg1;
+    border-radius: 3px;
+    padding: 2px 8px;
+    margin: 4px;
+}
+
+.notification-group-close-all-button:hover {
+    background: @red;
+    color: @bg1;
+}
+
+/* -----------------------------------------------------------------------------
+ * Floating popups
+ * -------------------------------------------------------------------------- */
+
+.floating-notifications.background .notification-background {
+    background: alpha(@bg2, 0.95);
+    border: 1px solid @bg4;
+    border-left: 3px solid @ice;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(18, 18, 31, 0.8);
+    margin: 6px;
+}
+
+.floating-notifications.background .notification-background.low,
+.floating-notifications.background .notification-background .notification.low {
+    border-left-color: @bg4;
+}
+
+.floating-notifications.background .notification-background.critical,
+.floating-notifications.background .notification-background .notification.critical {
+    border-left-color: @red;
+}

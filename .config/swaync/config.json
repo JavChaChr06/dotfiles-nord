@@ -1,0 +1,118 @@
+{
+  "$schema": "/etc/swaync/configSchema.json",
+
+  "layer": "overlay",
+  "layer-shell": true,
+  "control-center-layer": "overlay",
+  "cssPriority": "user",
+
+  "positionX": "right",
+  "positionY": "top",
+  "control-center-margin-top": 8,
+  "control-center-margin-bottom": 8,
+  "control-center-margin-right": 8,
+  "control-center-margin-left": 8,
+  "control-center-width": 440,
+  "control-center-height": 700,
+  "fit-to-screen": false,
+
+  "notification-window-width": 420,
+  "notification-icon-size": 42,
+  "notification-body-image-height": 140,
+  "notification-body-image-width": 240,
+  "notification-2fa-action": true,
+  "notification-inline-replies": true,
+  "image-visibility": "when-available",
+
+  "timeout": 8,
+  "timeout-low": 4,
+  "timeout-critical": 0,
+  "transition-time": 150,
+  "keyboard-shortcuts": true,
+  "hide-on-clear": true,
+  "hide-on-action": true,
+  "script-fail-notify": true,
+
+  "widgets": [
+    "title",
+    "dnd",
+    "buttons-grid",
+    "volume",
+    "backlight",
+    "mpris",
+    "notifications"
+  ],
+
+  "widget-config": {
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "󰎟  Clear"
+    },
+    "dnd": {
+      "text": "󰂛  Do Not Disturb"
+    },
+    "mpris": {
+      "image-size": 64,
+      "image-radius": 3
+    },
+    "volume": {
+      "label": "󰕾"
+    },
+    "backlight": {
+      "label": "󰃞",
+      "device": "intel_backlight"
+    },
+    "buttons-grid": {
+      "actions": [
+        {
+          "label": "󰖩",
+          "type": "toggle",
+          "command": "nmcli radio wifi on",
+          "command-off": "nmcli radio wifi off",
+          "update-command": "nmcli radio wifi | grep -q enabled && echo true || echo false"
+        },
+        {
+          "label": "󰂯",
+          "type": "toggle",
+          "command": "bluetoothctl power on",
+          "command-off": "bluetoothctl power off",
+          "update-command": "bluetoothctl show | grep -q 'Powered: yes' && echo true || echo false"
+        },
+        {
+          "label": "󰅶",
+          "type": "toggle",
+          "command": "pkill -x hypridle",
+          "command-off": "hyprctl dispatch exec hypridle",
+          "update-command": "pgrep -x hypridle > /dev/null && echo false || echo true"
+        },
+        {
+          "label": "󰖔",
+          "type": "toggle",
+          "command": "hyprctl dispatch exec 'hyprsunset -t 4000'",
+          "command-off": "pkill -x hyprsunset",
+          "update-command": "pgrep -x hyprsunset > /dev/null && echo true || echo false"
+        },
+        {
+          "label": "󰍺",
+          "type": "toggle",
+          "command": "~/.config/scripts/toggleMirror.sh --mirror",
+          "command-off": "~/.config/scripts/toggleMirror.sh --extend",
+          "update-command": "~/.config/scripts/toggleMirror.sh --status"
+        },
+        {
+          "label": "󰄀",
+          "command": "mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp -d)\" ~/Pictures/Screenshots/$(date +%F_%H-%M-%S).png"
+        },
+        {
+          "label": "󰈊",
+          "command": "hyprpicker -a"
+        },
+        {
+          "label": "󰌾",
+          "command": "wlogout"
+        }
+      ]
+    }
+  }
+}

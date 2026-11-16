@@ -1,7 +1,9 @@
 #!/bin/sh
-# Toggle the external HDMI monitor between mirroring the laptop panel
+# Switch the external HDMI monitor between mirroring the laptop panel
 # and extending to the right of it.
 #   toggleMirror.sh           -> toggle
+#   toggleMirror.sh --mirror  -> force mirror
+#   toggleMirror.sh --extend  -> force extend
 #   toggleMirror.sh --status  -> prints "true" while mirroring (for swaync's update-command)
 
 INT=eDP-1
@@ -14,6 +16,16 @@ mirroring() {
 	[ -n "$state" ] && [ "$state" != "none" ]
 }
 
+extend() {
+	hyprctl eval "hl.monitor({ output = \"$EXT\", mode = \"preferred\", position = \"auto-right\", scale = \"0.75\", mirror = \"\" })" >/dev/null
+	notify-send -a Display -i video-display "Extending to $EXT"
+}
+
+mirror() {
+	hyprctl eval "hl.monitor({ output = \"$EXT\", mode = \"preferred\", position = \"auto\", scale = \"auto\", mirror = \"$INT\" })" >/dev/null
+	notify-send -a Display -i video-display "Mirroring $INT to $EXT"
+}
+
 if [ "$1" = "--status" ]; then
 	mirroring && echo true || echo false
 	exit 0
@@ -24,10 +36,8 @@ if [ -z "$EXT" ]; then
 	exit 1
 fi
 
-if mirroring; then
-	hyprctl eval "hl.monitor({ output = \"$EXT\", mode = \"preferred\", position = \"auto-right\", scale = \"0.75\", mirror = \"\" })" >/dev/null
-	notify-send -a Display -i video-display "Extending to $EXT"
-else
-	hyprctl eval "hl.monitor({ output = \"$EXT\", mode = \"preferred\", position = \"auto\", scale = \"auto\", mirror = \"$INT\" })" >/dev/null
-	notify-send -a Display -i video-display "Mirroring $INT to $EXT"
-fi
+case "$1" in
+	--mirror) mirror ;;
+	--extend) extend ;;
+	*) if mirroring; then extend; else mirror; fi ;;
+esac
